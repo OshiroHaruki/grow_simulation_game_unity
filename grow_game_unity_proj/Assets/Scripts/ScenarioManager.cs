@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class ScenarioManager : MonoBehaviour
 {
@@ -8,22 +9,44 @@ public class ScenarioManager : MonoBehaviour
     GameObject textBox;
     string[] textFiles = new string[] {"mes1.txt", "mes2.txt", "mes3.txt"};
     int textFileNum = 0;
+    string[] scenarios;
+    int scenarioLine = 0;
+    string scenarioFilePath;
 
     void Start(){
         textBox = GameObject.Find("TextArea");
         tManager = GameObject.Find("TextManager").GetComponent<TextManager>();
-        tManager.setScenario(textFiles[textFileNum]);
+        // tManager.initText(textFiles[textFileNum]);
+        initScenario("scenario1.txt");
     }
 
     void Update(){
         if(tManager.getIsEnd()){
-            textFileNum++;
-            if (textFileNum < textFiles.Length){
-                tManager.setScenario(textFiles[textFileNum]);
-                tManager.setIsEnd(false);
-            }else{
-                Debug.Log("おしまい");
-            }
+            next();
         }
+    }
+
+    public void initScenario(string fileName){
+        scenarioFilePath = Application.dataPath + "/Scenarios/" + fileName;
+        string readScenario = loadScenario(scenarioFilePath);
+        scenarios = readScenario.Split('\n');
+        scenarioLine = 0;
+        next();
+    }
+
+    private string loadScenario(string path){
+        return File.ReadAllText(path);
+    }
+
+    private void next(){
+        if (scenarioLine < scenarios.Length){
+            if (scenarios[scenarioLine][0].Equals('/')){
+                tManager.initText(scenarios[scenarioLine].Substring(1));
+                tManager.setIsEnd(false);
+            }
+        }else{
+            Debug.Log("おしまい");
+        }
+        scenarioLine++;
     }
 }

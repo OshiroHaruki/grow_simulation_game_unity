@@ -20,7 +20,7 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    public void setScenario(string fileName){
+    public void initText(string fileName){
         textFilePath = Application.dataPath + "/Texts/" + fileName;
         readText = loadText(textFilePath);
         messages = readText.Split('\n');
