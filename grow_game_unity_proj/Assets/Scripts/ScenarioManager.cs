@@ -12,26 +12,28 @@ public class ScenarioManager : MonoBehaviour
     string[] scenarios;
     int scenarioLine = 0;
     string scenarioFilePath;
+    string status = "Init"; // Init, Wait, Text, Event, Evaluation, Feed, 
 
     void Start(){
-        textBox = GameObject.Find("TextArea");
-        tManager = GameObject.Find("TextManager").GetComponent<TextManager>();
-        // tManager.initText(textFiles[textFileNum]);
+        // textBox = GameObject.Find("TextArea");
+        // tManager = GameObject.Find("TextManager").GetComponent<TextManager>();
         initScenario("scenario1.txt");
     }
 
+/*
     void Update(){
         if(tManager.getIsEnd()){
             next();
         }
     }
+*/
 
     public void initScenario(string fileName){
         scenarioFilePath = Application.dataPath + "/Scenarios/" + fileName;
         string readScenario = loadScenario(scenarioFilePath);
         scenarios = readScenario.Split('\n');
         scenarioLine = 0;
-        next();
+        //next();
     }
 
     private string loadScenario(string path){
@@ -48,5 +50,11 @@ public class ScenarioManager : MonoBehaviour
             Debug.Log("おしまい");
         }
         scenarioLine++;
+    }
+
+    public string nextScenario(){
+        string s = scenarios[scenarioLine];
+        scenarioLine++;
+        return s;
     }
 }

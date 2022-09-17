@@ -1,3 +1,0 @@
-/mes1.txt
-/mes2.txt
-/mes3.txt
