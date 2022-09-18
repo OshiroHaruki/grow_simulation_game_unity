@@ -10,6 +10,9 @@ public class Charactor : MonoBehaviour
     // いったんpass public string tMaterialName = "animal_alpaca_huacaya.png"; // マテリアル名を指定して、それに変更できるかの確認用.
     public Material material;
     public Texture[] images;
+    public AudioClip evolutionSE;
+    public AudioSource audioSource;
+
     void Start(){
         material = gameObject.GetComponent<Renderer>().material;
         // 画像が切り替わるかの確認-> evolution();
@@ -34,6 +37,7 @@ public class Charactor : MonoBehaviour
         loveAmount = 0; //リセット
         needLove = 2;
         setCharaImage(images[nextImageNum]);
+        audioSource.PlayOneShot(evolutionSE);
         StartCoroutine("flashing"); // 点滅して変化感を演出.
     }
 

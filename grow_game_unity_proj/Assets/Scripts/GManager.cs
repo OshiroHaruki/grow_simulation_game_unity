@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GManager : MonoBehaviour
 {
-    public ScenarioManager scenarioManager;
     public EventManager eventManager;
-    bool isEvent = false;
     string status = "Stay";
     public GameObject StayUI;
     public GameObject StayUI_eventBox;

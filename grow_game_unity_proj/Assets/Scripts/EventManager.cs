@@ -12,7 +12,8 @@ public class EventManager : MonoBehaviour
     bool isEnd = false;
     bool wait = false;
     public TextMeshProUGUI textComponent;
-
+    public AudioClip buttonSE;
+    public AudioSource audioSource;
 
     public void setEvent(string fileName){
         // イベントを管理するテキストファイルを読み込み、1行ずつ分割する。
@@ -26,6 +27,7 @@ public class EventManager : MonoBehaviour
     public void click(){
         // テキストボックスにつければお手軽.
         if(!wait){
+            audioSource.PlayOneShot(buttonSE);
             next();
         } 
     }
@@ -63,7 +65,7 @@ public class EventManager : MonoBehaviour
 
     public void choice(int number){
         // 選択肢に、当然のように条件分岐つけようとしてるけど、
-        // どうやってやるかは未定だったわ...
+        // どうやってやるかは未定...
     }
 
     public bool isEndEvent(){
