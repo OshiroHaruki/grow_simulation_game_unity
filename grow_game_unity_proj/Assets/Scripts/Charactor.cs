@@ -15,7 +15,6 @@ public class Charactor : MonoBehaviour
 
     void Start(){
         material = gameObject.GetComponent<Renderer>().material;
-        // 画像が切り替わるかの確認-> evolution();
     }
 
     public bool checkLove(){

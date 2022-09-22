@@ -2359,7 +2359,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197558870}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0186699da99db4370bfc87dc165df96b, type: 3}
   m_Name: 
@@ -3539,7 +3539,6 @@ GameObject:
   - component: {fileID: 1977612499}
   - component: {fileID: 1977612501}
   - component: {fileID: 1977612500}
-  - component: {fileID: 1977612502}
   - component: {fileID: 1977612503}
   m_Layer: 5
   m_Name: white
@@ -3607,21 +3606,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977612498}
   m_CullTransparentMesh: 1
---- !u!114 &1977612502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977612498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81faac0e49ff84d9bb00e75c701de9b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 1974803249}
-  buttonSE: {fileID: 8300000, guid: 41d0c05ab0864461093f823470f2ea3f, type: 3}
-  audioSource: {fileID: 1737943467}
 --- !u!114 &1977612503
 MonoBehaviour:
   m_ObjectHideFlags: 0
