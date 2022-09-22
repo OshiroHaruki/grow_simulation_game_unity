@@ -2,73 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using UnityEngine.UI;
-using TMPro;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class EventManager : MonoBehaviour
 {
-    int textLine;
-    string[] texts;
-    bool isEnd = false;
-    bool wait = false;
-    public TextMeshProUGUI textComponent;
-    public AudioClip buttonSE;
-    public AudioSource audioSource;
+    public TextEventModel textEvent;
+    public CharactorModel chara;
+    public string[] textFiles;
+    int textLineNum;
+    string[] readTextLines;
+    public bool eventEndFlag = false;
 
-    public void setEvent(string fileName){
-        // イベントを管理するテキストファイルを読み込み、1行ずつ分割する。
-        string textFilePath = Application.dataPath + "/Texts/" + fileName;
-        texts = File.ReadAllText(textFilePath).Split('\n');
-        textLine = 0;
-        isEnd = false;
-        next();
+    public void setEvent(int eventNum){
+        // GameManager→この関数へEventの内容が書かれたテキストの番号を代入して実行する.
+        // textファイルを読み込む
+        string s = Application.dataPath + "/Texts/" + textFiles[eventNum];
+        readTextLines = File.ReadAllText(s).Split('\n');
+        // 値の初期化.
+        textLineNum = 0;
+        eventEndFlag = false;
+        // イベント開始
+        eventExec();
     }
 
-    public void click(){
-        // テキストボックスにつければお手軽.
-        if(!wait){
-            audioSource.PlayOneShot(buttonSE);
-            next();
-        } 
-    }
-
-    public void next(){
-        if (textLine < texts.Length){
-            string target = texts[textLine];
-            if(target[0].Equals('$')){
-                // 選択肢の発生.
-                // 未定→ setChoice(target);
-            }else{
-                // 通常のテキストを描画.
-                // 未実装→ setText(); 
-                textComponent.text = target.Replace(';', '\n');
+    private async UniTask eventExec(){
+        // 読み込んだTextFileを1行ずつ処理していく.
+        while (textLineNum < readTextLines.Length){
+            if(readTextLines[textLineNum].Length == 0){
+                // 0文字(空行)ならreadTextLines++;してcontinue
+                textLineNum++;
+                continue;
             }
-            textLine++;
-        } else {
-            isEnd = true;
+            if(readTextLines[textLineNum][0].Equals('!')){
+                // !で囲んだ範囲がtextEvent
+                // textEventの範囲の文字列を切り取り、textEventを始める.
+                string[] textEventStrings = cutTextEventStrings();
+                // textEventが終わるまでawaitする.
+                await textEvent.textEventExec(textEventStrings);
+
+            }else if(readTextLines[textLineNum][0].Equals('&')){
+                // &で始める部分がevolutionEvent.
+                await chara.evolution();
+            }
+            else{
+                // 以下の処理を実装予定
+                    // $をchoiceEvent
+                    // %を音楽再生
+            }
+            textLineNum++;
         }
+        eventEndFlag = true;
     }
 
-    private void setText(string mes){
-        // Textオブジェクトにメッセージをセットする
-        textComponent.text = mes.Replace(';', '\n');
-    }
+    private string[] cutTextEventStrings(){
+        // textEventの範囲の文字列を切り取り、改行で分割してstring配列を返す.
+        textLineNum++;
+        int startNum = textLineNum;
+        while(textLineNum < readTextLines.Length){
+            // テキストファイルの範囲内で探索.
+            if(readTextLines[textLineNum].Length == 0){
+                // 0文字だったら次の行へ.
+                textLineNum++;
+                continue;
+            }
+            if(readTextLines[textLineNum][0].Equals('!')){
+                break;
+            }
+            textLineNum++;
+        }
 
-    public void setChoice(string t){
-        // '$'区切りでテキストを書いておき、それを分割して選択肢とする。
-        string[] answers = t.Split('$');
-        // ans1 = answers[0] みたいな感じ。ans1には、eventUIのボックス的なのを格納しておけば、スムーズかも。
-        // ans2, ans3は上記同様。
-        // eventUIをTrueにする。
-        wait = true; // 待機状態へ。
-    }
-
-    public void choice(int number){
-        // 選択肢に、当然のように条件分岐つけようとしてるけど、
-        // どうやってやるかは未定...
-    }
-
-    public bool isEndEvent(){
-        return isEnd;
+        int sub = textLineNum - startNum;
+        string[] result = new string[sub];
+        Array.Copy(readTextLines, startNum, result, 0, sub);
+        return result;
     }
 }

@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637976831620000000
-    m_Hash: 2524645620
+      ticks: 637993192130000000
+    m_Hash: 287765400
   m_LockFileStatus:
     m_FilePath: /Users/e205721/temp/UnityGame/grow_simulation_game_unity/grow_game_unity_proj/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637976831660000000
-    m_Hash: 2967833652
+      ticks: 637993192130000000
+    m_Hash: 820642417
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -22,6 +22,55 @@ m_LocalPackages:
 m_ProjectPath: /Users/e205721/temp/UnityGame/grow_simulation_game_unity/grow_game_unity_proj/Packages
 m_EditorVersion: 2021.3.2f1 (d6360bedb9a0)
 m_ResolvedPackages:
+- packageId: com.cysharp.unitask@https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
+  testable: 0
+  isDirectDependency: 1
+  version: 2.3.1
+  source: 5
+  resolvedPath: /Users/e205721/temp/UnityGame/grow_simulation_game_unity/grow_game_unity_proj/Library/PackageCache/com.cysharp.unitask@f48cb4b03e
+  assetPath: Packages/com.cysharp.unitask
+  name: com.cysharp.unitask
+  displayName: UniTask
+  author:
+    name: Cysharp, Inc.
+    email: 
+    url: https://cysharp.co.jp/en/
+  category: Task
+  type: 
+  description: Provides an efficient async/await integration to Unity.
+  status: 4
+  errors: []
+  versions:
+    all: []
+    compatible: []
+    verified: 
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - async/await
+  - async
+  - Task
+  - UniTask
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
 - packageId: com.unity.collab-proxy@1.15.16
   testable: 0
   isDirectDependency: 1
