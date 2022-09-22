@@ -49,6 +49,7 @@ public class GManager : MonoBehaviour
     private void eventEnd(){
         EventUI.SetActive(false);
         StayUI.SetActive(true);
+        chara.resetLove();
     }
 
 }

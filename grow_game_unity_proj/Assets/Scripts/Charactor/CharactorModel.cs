@@ -29,13 +29,17 @@ public class CharactorModel : MonoBehaviour
 
     public async UniTask evolution(){
         // キャラクタの進化処理.
-        love = 0; // loveのリセット.
         numEvolution++;
         charactorView.evolutionView(images[numEvolution]);
     }
 
     public bool checkLove(){
         return (love >= needLove);
+    }
+
+    public void resetLove(){
+        // Loveのリセットを行う.
+        love = 0;
     }
 
 }
