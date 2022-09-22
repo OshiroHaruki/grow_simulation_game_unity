@@ -12,15 +12,16 @@ public class EventManager : MonoBehaviour
     public string[] textFiles;
     int textLineNum;
     string[] readTextLines;
-    public bool tempFlag = false;
+    public bool eventEndFlag = false;
 
     public void setEvent(int eventNum){
         // GameManager→この関数へEventの内容が書かれたテキストの番号を代入して実行する.
         // textファイルを読み込む
-        string s = Application.dataPath + "/Texts/" + "test1.txt";//textFiles[eventNum];
+        string s = Application.dataPath + "/Texts/" + textFiles[eventNum];
         readTextLines = File.ReadAllText(s).Split('\n');
         // 値の初期化.
         textLineNum = 0;
+        eventEndFlag = false;
         // イベント開始
         eventExec();
     }
@@ -46,11 +47,12 @@ public class EventManager : MonoBehaviour
             }
             else{
                 // 以下の処理を実装予定
-                    // $で囲んだ範囲をchoiceEvent/
+                    // $をchoiceEvent
+                    // %を音楽再生
             }
             textLineNum++;
         }
-        tempFlag = true;
+        eventEndFlag = true;
     }
 
     private string[] cutTextEventStrings(){

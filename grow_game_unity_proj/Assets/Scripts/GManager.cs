@@ -2,71 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine.UI;
 
 public class GManager : MonoBehaviour
 {
     public EventManager eventManager;
-    string status = "Stay";
     public GameObject StayUI;
     public GameObject StayUI_eventBox;
     public GameObject EventUI;
     public CharactorModel chara;
-    bool eventFlag = false;
-    public string[] eventTextFiles;
-    int eventTextFileNum = 0;
-    int numEvolution = 0;
+    int scenarioNum = 0; // Stay→Eventを1セットこなす＝scenario１個分、とする.
+    public Button eventStartButton;
 
-    // Update is called once per frame
-    void Update()
-    {
-        switch (status)
-        {
-            case "Stay":
-                if(!StayUI.activeSelf){
-                    StayUI.SetActive(true);
-                }
-                if((chara.checkLove()) && (!eventFlag)){
-                    eventFlag = true;
-                    StayUI_eventBox.SetActive(true);
-                }
-                break;
-            case "Event":
-                if(eventManager.tempFlag){
-                    eventEnd();
-                }
-                break;
-            case "Evolution":
-                evolution();
-                break;
-            default:
-                break;
+    void Start(){
+        mainLoop();
+    }
+
+    public async UniTask mainLoop(){
+        // ゲームループ.
+        var asyncEventHandler = eventStartButton.onClick.GetAsyncEventHandler(CancellationToken.None);
+        int i = 0;
+        while(i < 5){
+            // eventの数分ループすればよい。最終的にStay画面が永続する状態にする.
+            // 待機状態(餌を与えるなどの状態)
+            await UniTask.WaitUntil(() => chara.checkLove());
+            StayUI_eventBox.SetActive(true);
+            // イベント待機状態(イベント開始前)
+            // buttonのEventSystemをUniTaskで検知できるらしい。もっと早く知りたかった...
+            await asyncEventHandler.OnInvokeAsync();
+            eventStart(i);
+            await UniTask.WaitUntil(() => eventManager.eventEndFlag);
+            eventEnd();
+            i++;
         }
     }
 
-    public void eventStart(){
-        // buttonにつけてeventへ切り替える
-        status = "Event";
+    public void eventStart(int n){
         StayUI_eventBox.SetActive(false);
         StayUI.SetActive(false);
-        eventFlag = false;
         EventUI.SetActive(true);
-        eventManager.setEvent(0);
-        eventTextFileNum++;
+        eventManager.setEvent(n);
     }
 
-    public void eventEnd(){
-        status = "Stay";
+    private void eventEnd(){
         EventUI.SetActive(false);
-        if(eventTextFileNum >= eventTextFiles.Length){
-            // 次のイベントがない＝＞エンディング(現状だとタイトル)へ
-            //SceneManager.LoadScene("title");
-        }
-    }
-
-    public void evolution(){
-        chara.evolution();// numEvolution);
-        numEvolution++;
-        status = "Stay";
+        StayUI.SetActive(true);
     }
 
 }

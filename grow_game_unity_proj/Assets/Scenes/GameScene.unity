@@ -589,7 +589,7 @@ MonoBehaviour:
   StayUI_eventBox: {fileID: 1130608282}
   EventUI: {fileID: 1150366020}
   chara: {fileID: 1197558878}
-  eventTextFiles: []
+  eventStartButton: {fileID: 1130608283}
 --- !u!1001 &388815947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1383,9 +1383,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 377543915}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: rGManager, Assembly-CSharp
-        m_MethodName: eventStart
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2107,16 +2107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0186699da99db4370bfc87dc165df96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loveAmount: 0
-  needLove: 2
-  material: {fileID: 0}
-  images:
-  - {fileID: 2800000, guid: 001eb48aef28a48cc9491725a12e1edd, type: 3}
-  - {fileID: 2800000, guid: 2919bca64e925475296a028836c9c390, type: 3}
-  - {fileID: 2800000, guid: 7791e75af2b804f8a97974f4624ad163, type: 3}
-  - {fileID: 2800000, guid: 4a2480c7d7ba845a6b179bde7506de12, type: 3}
-  evolutionSE: {fileID: 8300000, guid: dc9d08f7d62794ed8ac4ff23f6bc455a, type: 3}
-  audioSource: {fileID: 1737943467}
 --- !u!95 &1197558876
 Animator:
   serializedVersion: 4
@@ -2937,8 +2927,12 @@ MonoBehaviour:
   textEvent: {fileID: 197387067}
   chara: {fileID: 1197558878}
   textFiles:
-  - test1.txt
-  tempFlag: 0
+  - tex1.txt
+  - tex2.txt
+  - tex3.txt
+  - tex4.txt
+  - tex5.txt
+  eventEndFlag: 0
 --- !u!4 &1750368568
 Transform:
   m_ObjectHideFlags: 0
