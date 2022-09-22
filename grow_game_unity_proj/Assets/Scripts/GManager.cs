@@ -10,7 +10,7 @@ public class GManager : MonoBehaviour
     public GameObject StayUI;
     public GameObject StayUI_eventBox;
     public GameObject EventUI;
-    public Charactor chara;
+    public CharactorModel chara;
     bool eventFlag = false;
     public string[] eventTextFiles;
     int eventTextFileNum = 0;
@@ -31,7 +31,7 @@ public class GManager : MonoBehaviour
                 }
                 break;
             case "Event":
-                if(eventManager.isEndEvent()){
+                if(eventManager.tempFlag){
                     eventEnd();
                 }
                 break;
@@ -50,21 +50,21 @@ public class GManager : MonoBehaviour
         StayUI.SetActive(false);
         eventFlag = false;
         EventUI.SetActive(true);
-        eventManager.setEvent(eventTextFiles[eventTextFileNum]);
+        eventManager.setEvent(0);
         eventTextFileNum++;
     }
 
     public void eventEnd(){
-        status = "Evolution";
+        status = "Stay";
         EventUI.SetActive(false);
         if(eventTextFileNum >= eventTextFiles.Length){
             // 次のイベントがない＝＞エンディング(現状だとタイトル)へ
-            SceneManager.LoadScene("title");
+            //SceneManager.LoadScene("title");
         }
     }
 
     public void evolution(){
-        chara.evolution(numEvolution);
+        chara.evolution();// numEvolution);
         numEvolution++;
         status = "Stay";
     }
