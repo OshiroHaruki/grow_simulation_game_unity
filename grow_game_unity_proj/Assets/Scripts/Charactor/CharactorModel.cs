@@ -5,8 +5,8 @@ using Cysharp.Threading.Tasks;
 
 public class CharactorModel : MonoBehaviour
 {
-    int love; // 愛情度
-    int needLove; // 進化に必要な愛情度
+    public int love; // 愛情度
+    public int needLove; // 進化に必要な愛情度
     int numEvolution = 0; // 進化回数
     public CharactorView charactorView;
     public Texture[] images;

@@ -361,6 +361,7 @@
 "Assets/Scripts/EventManager.cs"
 "Assets/Scripts/GManager.cs"
 "Assets/Scripts/LoadScene.cs"
+"Assets/Scripts/LoveMeter.cs"
 "Assets/Scripts/TextEvent/TextEventContoller.cs"
 "Assets/Scripts/TextEvent/TextEventModel.cs"
 "Assets/Scripts/TextEvent/TextEventView.cs"
