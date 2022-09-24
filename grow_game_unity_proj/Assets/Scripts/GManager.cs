@@ -13,10 +13,12 @@ public class GManager : MonoBehaviour
     public GameObject StayUI_eventBox;
     public GameObject EventUI;
     public CharactorModel chara;
+    public CharactorView charactorView;
     int scenarioNum = 0; // Stay→Eventを1セットこなす＝scenario１個分、とする.
     public Button eventStartButton;
 
     void Start(){
+        charactorView.startMovingAnimation(); // アニメーション開始.
         mainLoop();
     }
 
@@ -44,12 +46,14 @@ public class GManager : MonoBehaviour
         StayUI.SetActive(false);
         EventUI.SetActive(true);
         eventManager.setEvent(n);
+        charactorView.stopMovingAnimation();// アニメーションを止める.
     }
 
     private void eventEnd(){
         EventUI.SetActive(false);
         StayUI.SetActive(true);
         chara.resetLove();
+        charactorView.startMovingAnimation(); // アニメーションの再開
     }
 
 }

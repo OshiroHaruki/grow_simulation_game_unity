@@ -8,6 +8,7 @@ public class CharactorView : MonoBehaviour
     public AudioClip evolutionSE;
     public AudioSource audioSource;
     Material material;
+    public Animator anim;
 
     void Start(){
         material = gameObject.GetComponent<Renderer>().material;
@@ -40,5 +41,12 @@ public class CharactorView : MonoBehaviour
             yield return new WaitForSeconds(fDis);
         }
         yield return null;
+    }
+
+    public void stopMovingAnimation(){
+        anim.SetBool("move", false);
+    }
+    public void startMovingAnimation(){
+        anim.SetBool("move", true);
     }
 }

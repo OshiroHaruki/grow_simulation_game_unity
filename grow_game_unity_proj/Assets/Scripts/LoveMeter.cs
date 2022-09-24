@@ -24,11 +24,8 @@ public class LoveMeter : MonoBehaviour
             if(n > chara.needLove){
                 n = chara.needLove;
             }
-            print(n);
-            print(chara.needLove);
             float viewPersent = 1.0f * n / chara.needLove;
             meter.fillAmount = viewPersent;
-            print(viewPersent);
         }
     }
 

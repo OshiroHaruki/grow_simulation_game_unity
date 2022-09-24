@@ -5,17 +5,19 @@ using Cysharp.Threading.Tasks;
 
 public class CharactorModel : MonoBehaviour
 {
-    public int love; // 愛情度
-    public int needLove; // 進化に必要な愛情度
+    public int love = 0; // 愛情度
+    public int needLove = 0; // 進化に必要な愛情度
     int numEvolution = 0; // 進化回数
     public CharactorView charactorView;
     public Texture[] images;
 
     void Start()
     {
-        // 初期値の代入
-        love = 0;
-        needLove = 2;
+        // 初期値が未定の場合、とりあえず代入
+        if(needLove == 0){
+            love = 0;
+            needLove = 2;
+        }
     }
 
     public void feed(){
