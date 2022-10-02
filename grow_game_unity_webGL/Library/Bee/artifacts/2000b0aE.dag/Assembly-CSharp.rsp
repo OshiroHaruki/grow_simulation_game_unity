@@ -346,6 +346,7 @@
 "Assets/Scripts/TextEvent/TextEventContoller.cs"
 "Assets/Scripts/TextEvent/TextEventModel.cs"
 "Assets/Scripts/TextEvent/TextEventView.cs"
+"Assets/Scripts/TextObject.cs"
 "Assets/Scripts/Tutorial.cs"
 "Assets/Scripts/Util.cs"
 -langversion:9.0

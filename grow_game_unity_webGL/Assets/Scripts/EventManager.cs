@@ -10,15 +10,21 @@ public class EventManager : MonoBehaviour
     public TextEventModel textEvent;
     public CharactorModel chara;
     public string[] textFiles;
+    public TextObject[] textForWebGL; // webGLだとテキスト読み込みが難しいため、直接入れることにする.
     int textLineNum;
     string[] readTextLines;
     public bool eventEndFlag = false;
 
     public void setEvent(int eventNum){
         // GameManager→この関数へEventの内容が書かれたテキストの番号を代入して実行する.
-        // textファイルを読み込む
-        string s = Application.dataPath + "/Texts/" + textFiles[eventNum];
-        readTextLines = File.ReadAllText(s).Split('\n');
+        // textファイルのパス.
+        // string s = Application.dataPath + "/Texts/" + textFiles[eventNum];
+        // readTextLines = File.ReadAllText(s).Split('\n');
+
+        // WebGL上だとファイル読み込みができないことがあるため、WebGLで動作させるときは別の方法を用いる.
+        //readTextLines = textForWebGL[eventNum].Split('\n');
+        readTextLines = textForWebGL[eventNum].text;
+
         // 値の初期化.
         textLineNum = 0;
         eventEndFlag = false;

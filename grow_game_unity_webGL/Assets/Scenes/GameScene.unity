@@ -4730,6 +4730,12 @@ MonoBehaviour:
   - tex3.txt
   - tex4.txt
   - tex5.txt
+  textForWebGL:
+  - {fileID: 11400000, guid: 439edd615c83d49eb993ca0bfb1c1530, type: 2}
+  - {fileID: 11400000, guid: fb9a68d139afe4f1da83c043ffd56a12, type: 2}
+  - {fileID: 11400000, guid: 4ee84efce533b4f71b3d79aafe798637, type: 2}
+  - {fileID: 11400000, guid: 470a0fc9797a24dae959284ac64ff886, type: 2}
+  - {fileID: 11400000, guid: b948fddb9710b4ef69707e8aa6dc44dc, type: 2}
   eventEndFlag: 0
 --- !u!4 &1750368568
 Transform:
